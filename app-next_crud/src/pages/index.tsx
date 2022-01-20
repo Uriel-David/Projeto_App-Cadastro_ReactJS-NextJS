@@ -1,5 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
+import Button from '../components/Button'
 import Layout from '../components/Layout'
 import Table from '../components/Table'
 import Cliente from '../core/Cliente'
@@ -29,6 +30,11 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
+        <div className="flex justify-end">
+          <Button className="mb-4">
+            New Client
+          </Button>
+        </div>
         <Table client={clients}
                 clientSelect={clientSelect}
                 clientDelete={clientDelete}></Table>

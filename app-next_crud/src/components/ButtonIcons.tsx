@@ -1,5 +1,4 @@
 import { IconEdit } from "./Icons";
-import Cliente from "../core/Cliente";
 
 export default function ButtonIcon(props) {
     return(
