@@ -1,27 +1,22 @@
-import Head from 'next/head'
-import Image from 'next/image'
+import { useEffect, useState } from 'react'
 import Button from '../components/Button'
+import Form from '../components/Form'
 import Layout from '../components/Layout'
 import Table from '../components/Table'
-import Cliente from '../core/Cliente'
-import styles from '../styles/Home.module.css'
+import useClients from '../hooks/useClients'
 
 export default function Home() {
 
-  const clients = [
-    new Cliente('Ana', 34, '1'),
-    new Cliente('Bia', 45, '2'),
-    new Cliente('Carlos', 23, '3'),
-    new Cliente('Pedro', 54, '4'),
-  ]
-
-  function clientSelect(client: Cliente) {
-    //
-  }
-
-  function clientDelete(client: Cliente) {
-    //
-  }
+  const {
+    client,
+    clients,
+    tableVisibale,
+    showTable,
+    clientSelect,
+    clientDelete,
+    newClient,
+    saveClient,
+  } = useClients()
 
   return (
     <div className={`
@@ -30,14 +25,22 @@ export default function Home() {
       text-white
     `}>
       <Layout title="Cadastro Simples">
-        <div className="flex justify-end">
-          <Button className="mb-4">
-            New Client
-          </Button>
-        </div>
-        <Table client={clients}
-                clientSelect={clientSelect}
-                clientDelete={clientDelete}></Table>
+        {tableVisibale ? (
+          <>
+            <div className="flex justify-end">
+              <Button color="green" className="mb-4" onClick={newClient}>
+                New Client
+              </Button>
+            </div>
+            <Table client={clients}
+                  clientSelect={clientSelect}
+                  clientDelete={clientDelete} />
+          </>
+        ) : (
+          <Form client={client}
+                cancel={showTable}
+                clientChange={saveClient} />
+        )}
       </Layout>
     </div>
   )

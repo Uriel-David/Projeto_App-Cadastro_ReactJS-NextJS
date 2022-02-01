@@ -1,6 +1,7 @@
 import { IconEdit } from "./Icons";
 
-export default function ButtonIcon(props) {
+export default function ButtonIcon(props: any) {
+
     return(
         <button className={`
             ${props.children == IconEdit ? 'text-green-600' : 'text-red-500'}

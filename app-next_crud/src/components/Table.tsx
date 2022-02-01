@@ -1,16 +1,16 @@
-import Cliente from "../core/Cliente";
+import Client from "../core/Client";
 import ButtonIcon from "./ButtonIcons";
 import { IconEdit, IconTrash } from "./Icons";
 
 interface TableProps {
-    client: Cliente[]
-    clientSelect?: (client: Cliente) => void
-    clientDelete?: (client: Cliente) => void
+    client: Client[]
+    clientSelect?: (client: Client) => void
+    clientDelete?: (client: Client) => void
 }
 
 export default function Table(props: TableProps) {
 
-    const showAction = props.clientSelect || props.clientSelect
+    const showAction = props.clientDelete || props.clientSelect
 
     function renderHeader() {
         return(
@@ -37,19 +37,33 @@ export default function Table(props: TableProps) {
         })
     }
 
-    function renderActions(client: Cliente) {
+    function renderActions(client: Client) {
         return(
             <td className="flex justify-center">
                 {props.clientSelect ? (
-                    <ButtonIcon onClick={() => props.clientSelect?.(client)}>
+                    /* <ButtonIcon onClick={() => props.clientSelect?.(client)}>
                         {IconEdit}
-                    </ButtonIcon>
+                    </ButtonIcon> */
+                    <button onClick={() => props.clientSelect?.(client)} className={`
+                        flex justify-center items-center
+                        text-green-600 rounded-full p-2 m-1
+                        hover:bg-purple-50
+                    `}>
+                        {IconEdit}
+                    </button>
                 ) : false}
 
                 {props.clientSelect ? (
-                    <ButtonIcon onClick={() => props.clientDelete?.(client)}>
+                    /* <ButtonIcon onClick={() => props.clientDelete?.(client)}>
                         {IconTrash}
-                    </ButtonIcon>
+                    </ButtonIcon> */
+                    <button onClick={() => props.clientDelete?.(client)} className={`
+                        flex justify-center items-center
+                        text-red-500 rounded-full p-2 m-1
+                        hover:bg-purple-50
+                    `}>
+                        {IconTrash}
+                    </button>
                 ) : false}
             </td>
         )

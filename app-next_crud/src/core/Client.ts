@@ -1,4 +1,4 @@
-export default class Cliente {
+export default class Client {
     #id: string
     #name: string
     #age: number
@@ -10,7 +10,7 @@ export default class Cliente {
     }
 
     static hollow() {
-        return new Cliente('', 0)
+        return new Client('', 0)
     }
 
     get id() {
